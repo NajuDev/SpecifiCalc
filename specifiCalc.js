@@ -62,20 +62,33 @@ const SpecifiCalc = (function () {
 			return count;
 		},
 		
-		mainFn = (selector) => {
+		calculate = (selector) => {
 			const selectors = stripSelectors(selector).split(" ");
 			
-			const id_count = countIds(selectors),
-				class_psuedo_count = countClassesAndPsuedos(selectors),
-				elements_count = countElements(selectors);
+			return {
+				ids 		: countIds(selectors),
+				attributes 	: countClassesAndPsuedos(selectors),
+				elements	: countElements(selectors)
+			};
+		},
+		
+		asInt = (selector) => {
+			const counts = calculate(selector);
 			
-			return id_count + ", " + class_psuedo_count + ", " + elements_count;		
+			return parseInt((counts.ids.toString() + counts.attributes.toString() + counts.elements.toString()));
+		},
+		
+		mainFn = (selector) => {
+			const counts = calculate(selector);
+						
+			return counts.ids + "," + counts.attributes + "," + counts.elements;		
 		};
 		
 	mainFn.stripSelectors = stripSelectors;
 	mainFn.countIds = countIds;
 	mainFn.countClassesAndPsuedos = countClassesAndPsuedos;
 	mainFn.countElements = countElements;
+	mainFn.asInt = asInt;
 	
 	return mainFn;
 		
