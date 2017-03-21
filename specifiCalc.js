@@ -27,14 +27,14 @@ const SpecifiCalc = (function () {
 			return count;
 		},
 		
-		countClassesAndPsuedos = (selector_array) => {			
+		countClassesAndPseudos = (selector_array) => {			
 			const classPattern = /\..+/;
-			const psuedoPattern = /:.+/;
+			const pseudoPattern = /:.+/;
 		
 			let count = 0;
 		
 			selector_array.forEach((i) => {
-				if (classPattern.test(i) || psuedoPattern.test(i)) {
+				if (classPattern.test(i) || pseudoPattern.test(i)) {
 					//console.log('selector: ', i);
 					count += 1;
 				}
@@ -67,7 +67,7 @@ const SpecifiCalc = (function () {
 			
 			return {
 				ids 		: countIds(selectors),
-				attributes 	: countClassesAndPsuedos(selectors),
+				attributes 	: countClassesAndPseudos(selectors),
 				elements	: countElements(selectors)
 			};
 		},
@@ -86,7 +86,7 @@ const SpecifiCalc = (function () {
 		
 	mainFn.stripSelectors = stripSelectors;
 	mainFn.countIds = countIds;
-	mainFn.countClassesAndPsuedos = countClassesAndPsuedos;
+	mainFn.countClassesAndPseudos = countClassesAndPseudos;
 	mainFn.countElements = countElements;
 	mainFn.asInt = asInt;
 	
