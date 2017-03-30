@@ -46,7 +46,7 @@ const SpecifiCalc = (function () {
 		},
 		
 		countElements = (selector_array) => {			
-			const elementsPattern = /^[^\.#:\*]/;
+			const elementsPattern = /^[^\.#:]/;
 		
 			let count = 0;
 		
